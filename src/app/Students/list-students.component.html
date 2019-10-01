@@ -1,0 +1,9 @@
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Search by First Name" 
+    style="width:300px" [(ngModel)]="searchTerm"/>
+</div>
+
+<div class="panel panel-primary" *ngFor="let studentItem of students | studentFilter:searchTerm">
+    <app-display-student [student]="studentItem" [searchTerm]="searchTerm"></app-display-student>    
+</div>
+

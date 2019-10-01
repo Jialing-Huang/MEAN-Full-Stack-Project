@@ -1,0 +1,42 @@
+<form #studentForm="ngForm" (ngSubmit)="saveStudent()">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 *ngIf="isCreate" class="panel-title">Create Student</h3>
+            <h3 *ngIf="!isCreate" class="panel-title">Edit student</h3>
+        </div>
+        <div class="panel-body">
+         
+            <div class="form-group" [class.has-error]="FirstNameControl.invalid && FirstNameControl.touched" [class.has-success]="FirstNameControl.valid">
+                <label for="FirstName">First Name</label>
+                <input id="FirstName" [(ngModel)]="student.FirstName" name="fn" type="text" required class="form-control" #FirstNameControl="ngModel">
+                <span *ngIf="FirstNameControl.invalid && FirstNameControl.touched" class="help-block">First Name is required</span>
+            </div>
+         
+            <div class="form-group" [class.has-error]="LastNameControl.invalid && LastNameControl.touched" [class.has-success]="LastNameControl.valid">
+                    <label for="LastName">Last Name</label>
+                    <input id="LastName" [(ngModel)]="student.LastName" name="ln" type="text" required class="form-control" #LastNameControl="ngModel">
+                    <span *ngIf="LastNameControl.invalid && LastNameControl.touched" class="help-block">Last Name is required</span>
+            </div>           
+           
+            <div class="form-group">
+                    <label>Gender</label>
+                    <div class="form-control">
+                        <label class="radio-inline">
+                            <input value="Male" type="radio" name="gender" [(ngModel)]="student.Gender">
+                            Male
+                        </label>
+                        <label class="radio-inline">
+                            <input value="Female" type="radio" name="gender" [(ngModel)]="student.Gender">
+                            Female
+                        </label>
+                    </div>
+            </div>           
+        </div>
+        <div class="panel-footer">
+            <button type="submit" *ngIf="isCreate" class="btn btn-primary btn-space btn-width" [disabled]="studentForm.invalid">Save</button>
+            <button type="submit" *ngIf="!isCreate" class="btn btn-primary btn-space btn-width" [disabled]="studentForm.invalid">Update</button>
+            <button type="button" [disabled]="studentForm.invalid" class="btn btn-success btn-space btn-width" routerLink="/list">Go to List</button>
+        </div>
+    </div>
+    </form>
+  
